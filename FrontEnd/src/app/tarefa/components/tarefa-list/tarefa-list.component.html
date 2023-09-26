@@ -1,0 +1,51 @@
+<mat-table  [dataSource]="tarefaList">
+
+    <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Name  Column -->
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.titulo}} </mat-cell>
+    </ng-container>
+
+     <!-- Name  Column -->
+     <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.descricao}} </mat-cell>
+    </ng-container>
+
+    <!-- Name  Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.status}} </mat-cell>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.category}} 
+        <mat-icon aria-hidden="false" aria-label="Categoria do tarefaList">{{ tarefaList.category | category }}</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Botoes Column -->
+    <ng-container matColumnDef="botoes">
+      <mat-header-cell *matHeaderCellDef class="action-column-header"> 
+        <button mat-mini-fab color="primary" aria-label="Adicionar tarefaList">
+          <mat-icon (click)="onAdd()">add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList" class="action-column">
+        <button mat-icon-button color="primary" aria-label="Editar">
+          <mat-icon (click)="onEdit(tarefaList)">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warming" aria-label="Remover">
+          <mat-icon (click)="onDelete(tarefaList)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
