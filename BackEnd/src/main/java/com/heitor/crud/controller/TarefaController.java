@@ -2,13 +2,16 @@ package com.heitor.crud.controller;
 
 import com.heitor.crud.model.Tarefa;
 import com.heitor.crud.repository.TarefaRepository;
+import com.heitor.crud.service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tarefas")
@@ -19,7 +22,7 @@ public class TarefaController {
 
     @GetMapping
     public List<Tarefa> list() {
-        return tarefaRepository.findAll();
+        return tarefaRepository.findAll(Tarefa.class.);
     }
 
     @GetMapping("/{idTarefa}")
@@ -50,28 +53,29 @@ public class TarefaController {
     }
 
     //DELETE lógico
-    @PutMapping("delete/{id}")
-    public ResponseEntity<Tarefa> saveExcluido(@PathVariable Long id, @RequestBody Tarefa tarefa) {
-        return tarefaRepository.findById(id)
-                .map(response -> {
-                    response.setExcluido(Boolean.TRUE);
-                    response.setDataHoraConclusao(LocalDateTime.now());
-                    response.setStatus(tarefa.getStatus());
-                    Tarefa deleted = tarefaRepository.save(response);
-                    return ResponseEntity.ok().body(deleted);
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-
-    //Delete do banco
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        return tarefaRepository.findById(id)
-                .map(recordFound -> {
-                    tarefaRepository.deleteById(id);
-                    return ResponseEntity.noContent().<Void>build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Tarefa> saveExcluido(@PathVariable Long id) {
+        Optional<Tarefa> tarefaOptional = tarefaRepository.findById(id);
+        if(tarefaOptional.isPresent()){
+            tarefaOptional.map(response -> {
+                response.setExcluido(Boolean.TRUE);
+                response.setDataHoraExclusao(LocalDateTime.now());
+//                return this.tarefaRepository.save(response);
+                return ResponseEntity.ok(this.tarefaRepository.save(response)).getBody();
+            });
+        }
+       return ResponseEntity.noContent().build();
     }
+
+
+//    //Delete do banco
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Long id) {
+//        return tarefaRepository.findById(id)
+//                .map(recordFound -> {
+//                    tarefaRepository.deleteById(id);
+//                    return ResponseEntity.noContent().<Void>build();
+//                })
+//                .orElse(ResponseEntity.notFound().build());
+//    }
 }

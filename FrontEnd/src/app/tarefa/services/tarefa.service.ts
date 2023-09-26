@@ -43,6 +43,6 @@ export class TarefaService {
 
   excluir(id: string) {
     console.log('aaaaaa')
-    return this.httpCliente.delete(`${this.API}/${id}`).pipe(first());
+  return this.httpCliente.delete(`${this.API}/${id}`).pipe(first());
   }
 }

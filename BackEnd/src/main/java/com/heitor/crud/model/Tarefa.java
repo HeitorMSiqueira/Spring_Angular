@@ -30,6 +30,9 @@ public class Tarefa {
     @Column(name = "dh_conclusao")
     private LocalDateTime dataHoraConclusao;
 
+    @Column(name = "dh_exclusao")
+    private LocalDateTime dataHoraExclusao;
+
     @Column(name = "fl_excluido", nullable = false, columnDefinition = "boolean default false")
     private Boolean excluido = Boolean.FALSE;
 
@@ -82,6 +85,14 @@ public class Tarefa {
 
     public void setDataHoraConclusao(LocalDateTime dataHoraConclusao) {
         this.dataHoraConclusao = dataHoraConclusao;
+    }
+
+    public LocalDateTime getDataHoraExclusao() {
+        return dataHoraExclusao;
+    }
+
+    public void setDataHoraExclusao(LocalDateTime dataHoraExclusao) {
+        this.dataHoraExclusao = dataHoraExclusao;
     }
 
     public Boolean getExcluido() {
