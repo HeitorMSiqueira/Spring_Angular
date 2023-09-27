@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/tarefas")
 public class TarefaController {
 
-    @Autowired // injecao da dependencia
+    @Autowired
     private TarefaRepository tarefaRepository;
 
     @GetMapping
@@ -40,7 +40,6 @@ public class TarefaController {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Tarefa create(@RequestBody @Valid Tarefa tarefa) {
-
         return tarefaRepository.save(tarefa);
     }
 
