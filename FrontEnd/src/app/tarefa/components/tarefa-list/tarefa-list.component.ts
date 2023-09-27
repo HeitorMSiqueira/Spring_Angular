@@ -13,7 +13,7 @@ export class TarefaListComponent implements OnInit {
   @Output() editar = new EventEmitter(false); //o que esta saindo os eventos -- para editar
   @Output() excluir = new EventEmitter(false);
  
-   readonly displayedColumns = ['titulo', 'descricao', 'status', 'botoes']; //colunas que serao mostradas no html
+   readonly displayedColumns = ['titulo', 'descricao', 'status', 'dataHoraCriacao', 'dataHoraConclusao', 'botoes']; //colunas que serao mostradas no html
 
   constructor() { }
 

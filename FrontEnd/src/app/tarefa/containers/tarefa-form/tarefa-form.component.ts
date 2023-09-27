@@ -54,7 +54,6 @@ export class TarefaFormComponent implements OnInit {
     }
     this.service.salvar(this.formulario.value)
       .subscribe(result => this.onSuccess(), error => this.onError());
-    //this.location.back(); // usando o location para retornar para a pagina
   }
 
   onCancel() {
@@ -71,13 +70,20 @@ export class TarefaFormComponent implements OnInit {
   }
 
   private validationSubmit(formulario: any){
-    console.log('formulario',formulario)
-    if(formulario.titulo == ""){
-      this.snackBar.open('Não foi possível gravar, título obrigatório', '', { duration: 3000 });
+    if(!this.formulario.value.titulo){
+      this.snackBar.open('Obrigatorio informar título', '', { duration: 3000 });
       return true;
     }
-    else if(this.formulario.value.status == "Concluida" && this.formulario.value.dataHoraConclusao){
+    else if(!this.formulario.value.status){
+      this.snackBar.open('Obrigatório informar status', '', { duration: 3000 });
+      return true;
+    }
+    else if(this.formulario.value.status == "Concluida" && !this.formulario.value.dataHoraConclusao){
       this.snackBar.open('Status concluída, obrigatório informar data de conclusão', '', { duration: 3000 });
+      return true;
+    }
+    else if(this.formulario.value.dataHoraConclusao && this.formulario.value.status != "Concluida"){
+      this.snackBar.open('Data de conclusão preenchida, obrigatório informar status como Concluída', '', { duration: 3000 });
       return true;
     }
     return false;
