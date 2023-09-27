@@ -1,0 +1,44 @@
+<mat-table  [dataSource]="tarefaList">
+
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList" title="{{tarefaList.titulo}}"> {{tarefaList.titulo}} </mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="descricao">
+      <mat-header-cell *matHeaderCellDef> Descrição </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList" title="{{tarefaList.descricao}}"> {{tarefaList.descricao}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.status}} 
+        <mat-icon aria-hidden="false" aria-label="Status do tarefaList">{{ tarefaList.status | status }}</mat-icon>
+      </mat-cell>
+    </ng-container>
+      <ng-container matColumnDef="dataHoraCriacao">
+      <mat-header-cell *matHeaderCellDef> Data hora cadastro </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.dataHoraCriacao | date : 'dd/MM/yyyy HH:mm'}} </mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="dataHoraConclusao">
+      <mat-header-cell *matHeaderCellDef> Data hora conclusão </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList"> {{tarefaList.dataHoraConclusao | date : 'dd/MM/yyyy HH:mm'}} </mat-cell>
+    </ng-container>
+    <!-- Botoes Column -->
+    <ng-container matColumnDef="botoes">
+      <mat-header-cell *matHeaderCellDef class="action-column-header"> 
+        <button mat-mini-fab color="primary" aria-label="Adicionar tarefaList" title="Adicionar">
+          <mat-icon (click)="onAdd()">add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let tarefaList" class="action-column">
+        <button mat-icon-button color="primary" aria-label="Editar" title="Editar">
+          <mat-icon (click)="onEdit(tarefaList)">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warming" aria-label="Remover" title="Excluir">
+          <mat-icon (click)="onDelete(tarefaList)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
