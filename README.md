@@ -8,11 +8,12 @@ o botao 'lixeira', para a remoção de uma tarefa. Esta remoção é uma exclus�
 indicando que o item foi excluído, inserindo uma data para registrar o momento da exclusão.
 O item excluído nao apresenta na listagem.
 
-
 Para utilizar a aplicação necessario executar o Spring e o Angular,
 Para inciar a aplicação frontEnd com conexão a backend, necessario utilizar o comando: "npm run start" (dentro da pasta da aplicação frontEnd)
 
 Estrutura dos Projetos
+O projeto esta separado em pastas para Backend e FrontEnd.
+
 Backend -> 
 Utilizando o Spring Boot na versão 3.1.4 com Java na versão 17, com banco postgresql e algumas dependencias como JPA.
 Iniciado testes unitários, para cobertura dos códigos (necessitando finalização).
