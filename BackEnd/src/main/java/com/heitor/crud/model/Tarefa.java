@@ -23,17 +23,19 @@ public class Tarefa {
     @NotNull
     @Length(max = 100)
     @NotBlank(message = "Obrigatório informar título")
-    @Column(name = "titulo", nullable = false)
+    @Column(name = "titulo")
     private String titulo;
 
     @Length(max = 200)
     @Column(name = "descricao")
     private String descricao;
 
+    @NotNull(message = "Obrigatório informar status")
     @Column(name = "status")
     private String status;
 
-    @Column(name = "dh_criacao", nullable = false)
+    @NotNull
+    @Column(name = "dh_criacao")
     private LocalDateTime dataHoraCriacao;
 
     @Column(name = "dh_conclusao")
@@ -42,6 +44,7 @@ public class Tarefa {
     @Column(name = "dh_exclusao")
     private LocalDateTime dataHoraExclusao;
 
-    @Column(name = "fl_excluido", nullable = false)
+    @NotNull
+    @Column(name = "fl_excluido")
     private Boolean excluido = Boolean.FALSE;
 }
