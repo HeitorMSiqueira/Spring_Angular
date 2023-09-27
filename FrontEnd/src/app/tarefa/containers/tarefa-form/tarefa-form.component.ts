@@ -22,7 +22,7 @@ export class TarefaFormComponent implements OnInit {
     dataHoraCriacao: [''],
     dataHoraConclusao: [''],
     excluido: false,
-    status: [''] 
+    status: [''],
   });
 
   constructor(
