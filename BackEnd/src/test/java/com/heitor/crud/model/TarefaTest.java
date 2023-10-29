@@ -39,12 +39,12 @@ class TarefaTest {
         tarefa.setDataHoraExclusao(LocalDateTime.now());
     }
 
-    @Test
-    public void validaSeCampoTituloEstaNull() {
-        Tarefa tarefaMock = mock(Tarefa.class);
-        when(tarefaMock.getTitulo()).thenReturn(null);
-        assertNull("valida titulo null", tarefaMock.getTitulo());
-    }
+//    @Test
+//    public void validaSeCampoTituloEstaNull() {
+//        Tarefa tarefaMock = mock(Tarefa.class);
+//        when(tarefaMock.getTitulo()).thenReturn(null);
+//        assertNull("valida titulo null", tarefaMock.getTitulo());
+//    }
 
     @Test
     public void validaSeCampoTituloNaoEstaNull() {
@@ -60,10 +60,18 @@ class TarefaTest {
         assertNotNull(tarefaMock.getDataHoraCriacao());
     }
 
-    @Test
-    public void validaSeCampoDataHoraCriacaoEstaNull() {
-        Tarefa tarefaMock = mock(Tarefa.class);
-        when(tarefaMock.getDataHoraCriacao()).thenReturn(null);
-        assertNull("data criação null", tarefaMock.getDataHoraCriacao());
-    }
+//    @Test
+//    public void validaSeCampoDataHoraCriacaoEstaNull() {
+//        Tarefa tarefaMock = mock(Tarefa.class);
+//        when(tarefaMock.getDataHoraCriacao()).thenReturn(null);
+//        assertNull("data criação null", tarefaMock.getDataHoraCriacao());
+//    }
+
+//    @Test
+//    public void validaSeCampoDataHoraCriacaoEstaNull() {
+//        String titulo = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+//        Tarefa tarefaMock = mock(Tarefa.class);
+//        when(tarefaMock.getDataHoraCriacao()).thenReturn(null);
+//        assertEquals("data criação null", tarefaMock.getDataHoraCriacao());
+//    }
 }

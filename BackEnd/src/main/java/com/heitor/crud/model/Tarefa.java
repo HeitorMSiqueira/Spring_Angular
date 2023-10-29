@@ -1,5 +1,6 @@
 package com.heitor.crud.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -33,8 +34,9 @@ public class Tarefa {
     @Column(name = "status")
     private String status;
 
-    @NotNull
+    @NotNull()
     @Column(name = "dh_criacao")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataHoraCriacao;
 
     @Column(name = "dh_conclusao")
